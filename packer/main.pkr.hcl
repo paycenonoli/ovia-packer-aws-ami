@@ -34,11 +34,6 @@ build {
   ]
 
   provisioner "shell" {
-    inline = [
-      "sudo apt-get update -y",
-      "sudo apt-get install -y git curl unzip",
-      "git --version",
-      "curl --version"
-    ]
+    script = "../scripts/bootstrap.sh"
   }
 }
