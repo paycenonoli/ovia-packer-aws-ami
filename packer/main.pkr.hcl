@@ -32,4 +32,13 @@ build {
   sources = [
     "source.amazon-ebs.ubuntu"
   ]
+
+  provisioner "shell" {
+    inline = [
+      "sudo apt-get update -y",
+      "sudo apt-get install -y git curl unzip",
+      "git --version",
+      "curl --version"
+    ]
+  }
 }
