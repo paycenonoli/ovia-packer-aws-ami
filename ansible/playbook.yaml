@@ -1,0 +1,36 @@
+---
+- name: Configure Packer-built image
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Update apt package cache
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Install required packages
+      apt:
+        name:
+          - git
+          - curl
+          - unzip
+        state: present
+
+    - name: Verify Git installation
+      command: git --version
+      register: git_version
+      changed_when: false
+
+    - name: Display Git version
+      debug:
+        var: git_version.stdout
+
+    - name: Verify curl installation
+      command: curl --version
+      register: curl_version
+      changed_when: false
+
+    - name: Display curl version
+      debug:
+        var: curl_version.stdout
