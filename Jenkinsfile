@@ -80,5 +80,20 @@ pipeline {
                 '''
             }
         }
+
+        stage('Approve Deployment') {
+            steps {
+                input message: 'Deploy the new AMI to AWS?', ok: 'Deploy'
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                sh '''
+                    cd terraform
+                    terraform apply -auto-approve -var="ami_id=${AMI_ID}"
+                '''
+            }
+        }
     }
 }
