@@ -1,9 +1,6 @@
-output "instance_id" {
-  description = "EC2 instance ID"
-  value       = aws_instance.app.id
+output "autoscaling_group_name" {
+  value = aws_autoscaling_group.app.name
 }
-
-output "instance_public_ip" {
-  description = "Public IP address of the EC2 instance"
-  value       = aws_instance.app.public_ip
+output "launch_template_id" {
+  value = aws_launch_template.app.id
 }
